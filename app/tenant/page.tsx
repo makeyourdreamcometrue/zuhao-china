@@ -201,7 +201,7 @@ export default function TenantDashboardPage() {
                 <Home className="w-5 h-5" />
                 <span>概览</span>
               </button>
-              <button onClick={() => setActiveTab('applications')} className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left ${activeTab === 'applications' ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-gray-50'}`}>
+              <button onClick={() => router.push('/tenant/applications')} className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-gray-600 hover:bg-gray-50">
                 <Clipboard className="w-5 h-5" />
                 <span>我的申请</span>
                 {stats.applications > 0 && <span className="ml-auto bg-blue-600 text-white text-xs px-2 py-0.5 rounded-full">{stats.applications}</span>}
