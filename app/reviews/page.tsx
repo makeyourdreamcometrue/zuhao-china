@@ -86,6 +86,7 @@ export default function PropertyReviews({ propertyId }: PropertyReviewsProps) {
     const user = userStr ? JSON.parse(userStr) : null
 
     const review = {
+      id: Date.now().toString(),
       property_id: propertyId,
       tenant_name: user?.name || '匿名用户',
       rating: newReview.rating,
@@ -95,7 +96,7 @@ export default function PropertyReviews({ propertyId }: PropertyReviewsProps) {
     }
 
     // Save to database (or local storage for demo)
-    setReviews([review, ...reviews])
+    setReviews([review, ...reviews] as typeof reviews)
     setNewReview({ rating: 5, comment: '' })
     setShowForm(false)
   }

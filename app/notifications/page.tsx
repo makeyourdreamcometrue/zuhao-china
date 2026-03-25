@@ -114,10 +114,10 @@ export default function NotificationsPage() {
       sender_id: user?.id,
       recipient_id: composeForm.recipient_id || user?.id,
       is_read: false,
-      status: 'sent',
+      status: 'sent' as const,
       created_at: new Date().toISOString()
     }
-    setNotifications([newNotif, ...notifications])
+    setNotifications([newNotif, ...notifications] as typeof notifications)
     
     setShowCompose(false)
     setComposeForm({ title: '', content: '', type: 'announcement', recipient_id: '', send_email: false, send_wechat: false })
