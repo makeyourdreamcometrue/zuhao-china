@@ -11,7 +11,7 @@ const saveAuthSession = (user: any) => { localStorage.setItem('auth_user', JSON.
 const getCurrentUser = () => { try { const u = localStorage.getItem('auth_user'), e = localStorage.getItem('auth_expiry'); return u && e && Date.now() < parseInt(e) ? JSON.parse(u) : null } catch { return null } }
 const isAuthenticated = () => getCurrentUser() !== null
 const getDefaultRole = (roles: string[]) => roles?.length === 1 ? roles[0] : null
-const navigateByRole = (role: string, r: any) => { if (role === 'landlord') r.push('/dashboard'); else if (role === 'tenant') r.push('/properties'); else r.push('/') }
+const navigateByRole = (role: string, r: any) => { if (role === 'landlord') r.push('/dashboard'); else if (role === 'tenant') r.push('/tenant'); else r.push('/') }
 
 export default function LoginPage() {
   const router = useRouter()

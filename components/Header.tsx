@@ -49,7 +49,7 @@ export default function Header() {
       if (role === 'landlord') {
         router.push('/dashboard')
       } else if (role === 'tenant') {
-        router.push('/properties')
+        router.push('/tenant')
       } else if (role === 'admin') {
         router.push('/admin')
       }
@@ -66,7 +66,8 @@ export default function Header() {
     const role = user.current_role || user.role
     if (role === 'landlord') return '/dashboard'
     if (role === 'admin') return '/admin'
-    return '/properties'
+    if (role === 'tenant') return '/tenant'
+    return '/'
   }
 
   // Get role display info
