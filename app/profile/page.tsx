@@ -23,15 +23,18 @@ export default function ProfilePage() {
   const supabase = createClient()
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('user')
-    if (storedUser) {
-      const userData = JSON.parse(storedUser)
-      setUser(userData)
-      setName(userData.name || '')
-      setRole(userData.role || 'tenant')
-    } else {
+    const userStr = localStorage.getItem('auth_user')
+    const expiryStr = localStorage.getItem('auth_expiry')
+    
+    if (!userStr || !expiryStr || Date.now() > parseInt(expiryStr)) {
       router.push('/login')
+      return
     }
+    
+    const userData = JSON.parse(userStr)
+    setUser(userData)
+    setName(userData.name || '')
+    setRole(userData.role || 'tenant')
     setLoading(false)
   }, [router])
 
@@ -56,7 +59,11 @@ export default function ProfilePage() {
   }
 
   const handleLogout = () => {
+    localStorage.removeItem('auth_user')
+    localStorage.removeItem('auth_token')
+    localStorage.removeItem('auth_expiry')
     localStorage.removeItem('user')
+    document.cookie = 'auth_state=;max-age=0;path=/'
     router.push('/login')
   }
 
