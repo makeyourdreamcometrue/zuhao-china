@@ -8,9 +8,11 @@ const SESSION_DURATION = 7 * 24 * 60 * 60 * 1000 // 7 days in ms
 
 export interface AuthUser {
   id: string
-  phone: string
+  phone?: string
   name?: string
-  role: 'landlord' | 'tenant' | 'admin'
+  role?: string // Primary role (backward compatibility)
+  roles: string[] // All roles user has: ['tenant'], ['landlord'], or ['tenant', 'landlord']
+  current_role?: string // Currently active role
   email?: string
   wechat_id?: string
   created_at?: string
